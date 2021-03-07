@@ -1,0 +1,192 @@
+* {
+    margin: 0;
+    padding: 0;
+
+    list-style-type: none;
+}
+
+body {
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 3%;
+
+    min-width: 320px;
+
+    color: #4212AF;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+}
+
+/* Шапка сайта */
+
+header {
+    display: flex;
+    flex-direction: row;
+
+    margin-bottom: 2%;
+}
+
+header > h1 {
+    margin-right: 15%;
+
+    font-size: 3.5vmax;
+}
+
+header > button {
+    margin-right: 35%;
+    width: 24%;
+
+    font-size: 1vw;
+
+    color: #4212AF;
+    border: 3px solid #7E07A9;
+    border-radius: 10px;
+}
+
+/* Структура данных о погоде */
+
+.structure {
+    display: flex;
+    flex-direction: column;
+}
+
+.structure > li {
+    margin-bottom: 3%;
+}
+
+.main-city, .weather-info-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* Избранный город */
+
+h2 {
+    font-size: 4vw;
+}
+
+.weather_info {
+    display: flex;
+    flex-direction: column;
+    width: 47%;
+}
+
+.weather_info > ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.weather_info > ul > li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    padding: 1%;
+
+    border: 2px solid #7E07A9;
+    font-size: 1.5vw;
+}
+
+.weather_info > ul > li > p:first-child {
+    font-weight: bold;
+}
+
+
+.favorite-city-main-info {
+    display: flex;
+    flex-direction: column;
+
+    width: 47%;
+}
+
+.favorite-city-main-info > div {
+    display: flex;
+    flex-direction: row;
+
+    height: 100%;
+}
+
+
+.favorite-city-main-info > div > p {
+    margin: auto;
+    text-align: center;
+
+    font-size: 12vw;
+}
+
+.favorite-city-main-info > div > img {
+    height: 100%;
+}
+
+/* Избранное */
+
+.favorite-panel {
+    display: flex;
+    flex-direction: row;
+}
+
+h3 {
+    font-size: 3.5vw;
+    margin-right: auto;
+}
+
+.add-city {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 40%;
+}
+
+.add-city > input {
+    width: 100%;
+    height: 80%;
+
+    font-size: 1vw;
+    text-indent: 10%;
+}
+
+.add-city > button {
+    border: none;
+    width: 14%;
+
+    margin-left: 2%;
+}
+
+.add-city > button > img {
+    width: 100%;
+}
+
+/* Список городов */
+
+
+.weather_info > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    font-size: 3vw;
+}
+
+
+.weather_info > ul > li:not(:last-child) {
+    margin-bottom: 3%;
+}
+
+.weather_info > div > img {
+    width: 10%;
+}
+
+.weather_info > div > button {
+    width: 10%;
+}
+
+.weather_info > div > button > img {
+    width: 100%;
+}
