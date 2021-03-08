@@ -1,0 +1,95 @@
+@media screen and (max-width: 960px) {
+
+    /* Шапка */
+
+    header > h1 {
+        font-size: 7vw;
+        margin-right: auto;
+    }
+
+    header > button {
+        width: 10%;
+        margin-right: 20%;
+    }
+
+    header > button > p {
+        display: none;
+    }
+
+    header > button > img {
+        display: block;
+        width: 100%;
+    }
+
+    /* Структура данных о погоде */
+
+    .structure > li {
+        flex-direction: column;
+    }
+
+    .structure > li > div {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    /* Избранный город */
+
+    h2 {
+        font-size: 7.5vw;
+    }
+
+    .favorite-city-main-info > div {
+        margin-top: 5%;
+    }
+
+    .favorite-city-main-info > div > p {
+        margin-right: 5%;
+        font-size: 20vw;
+    }
+
+    .favorite-city-main-info > div > img {
+        width: 30%;
+    }
+
+    /* Структура описания погоды */
+
+    .weather_info {
+        margin-top: 5%;
+    }
+
+    .weather_info > ul > li {
+        font-size: 3.5vw;
+    }
+
+    /* Избранное */
+
+    h3 {
+        font-size: 7vw;
+        margin-right: auto;
+    }
+
+    .add-city {
+        margin-top: 5%;
+        width: 100%;
+    }
+
+    .add-city > input {
+        font-size: 4vw;
+        padding: 2%;
+    }
+
+    .add-city > button {
+        width: 12%;
+    }
+
+    .add-city > button > img {
+        width: 100%;
+    }
+
+    /* Список городов */
+
+    .weather_info > div {
+        font-size: 7vw;
+    }
+
+}

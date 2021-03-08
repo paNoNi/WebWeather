@@ -3,6 +3,7 @@
     padding: 0;
 
     list-style-type: none;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 body {
@@ -10,7 +11,7 @@ body {
     margin-right: 5%;
     margin-top: 3%;
 
-    min-width: 320px;
+    background-color: #E8D9FF;
 
     color: #4212AF;
 }
@@ -18,6 +19,7 @@ body {
 button {
     background-color: transparent;
     border: none;
+    outline: none   ;
 }
 
 /* Шапка сайта */
@@ -27,10 +29,20 @@ header {
     flex-direction: row;
 
     margin-bottom: 2%;
+    border-bottom: 2px solid #7E07A9;
+    padding-bottom: 1%;
+    border-radius: 10px;
+}
+
+header >button > img {
+    display: none;
+    background-color: #DFCBFF;
+    border-radius: 100%;
 }
 
 header > h1 {
     margin-right: 15%;
+    font-weight: normal;
 
     font-size: 3.5vmax;
 }
@@ -44,6 +56,7 @@ header > button {
     color: #4212AF;
     border: 3px solid #7E07A9;
     border-radius: 10px;
+    background-color: #DFCBFF;
 }
 
 /* Структура данных о погоде */
@@ -73,6 +86,12 @@ h2 {
     display: flex;
     flex-direction: column;
     width: 47%;
+
+    padding: 1%;
+    border: 1px solid #7E07A9;
+    border-radius: 10px;
+
+    background-color: #DFCBFF;
 }
 
 .weather_info > ul {
@@ -90,6 +109,7 @@ h2 {
     padding: 1%;
 
     border: 2px solid #7E07A9;
+    border-radius: 7px;
     font-size: 1.5vw;
 }
 
@@ -129,11 +149,18 @@ h2 {
 .favorite-panel {
     display: flex;
     flex-direction: row;
+
+    height: 100%;
+
+    border-bottom: 2px solid #7E07A9;
+    border-top: 2px solid #7E07A9;
+    border-radius: 5px;
 }
 
 h3 {
     font-size: 3.5vw;
     margin-right: auto;
+    font-weight: normal;
 }
 
 .add-city {
@@ -141,20 +168,28 @@ h3 {
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    width: 40%;
+    width: 49%;
 }
 
 .add-city > input {
     width: 100%;
     height: 80%;
 
-    font-size: 1vw;
+    font-size: 1.5vw;
+    color: #4212AF;
     text-indent: 10%;
+
+    border: 1px solid #7E07A9;
+    background-color: #DFCBFF;
+
+    outline: #8900ac;
 }
 
 .add-city > button {
     border: none;
     width: 14%;
+    background-color: #DFCBFF;
+    border-radius: 100%;
 
     margin-left: 2%;
 }
@@ -174,9 +209,13 @@ h3 {
     font-size: 3vw;
 }
 
+.weather_info > div > p:first-child {
+    font-weight: bold;
+}
+
 
 .weather_info > ul > li:not(:last-child) {
-    margin-bottom: 3%;
+    margin-bottom: 2%;
 }
 
 .weather_info > div > img {
@@ -189,4 +228,10 @@ h3 {
 
 .weather_info > div > button > img {
     width: 100%;
+}
+
+/* Интерактив */
+
+button:hover {
+    transform: scale(0.95, 0.95);
 }
