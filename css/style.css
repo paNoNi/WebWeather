@@ -70,11 +70,12 @@ header > button {
     margin-bottom: 3%;
 }
 
-.main-city, .weather-info-row {
+.main-city {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
+
 
 /* Избранный город */
 
@@ -82,10 +83,14 @@ h2 {
     font-size: 4vw;
 }
 
+.main-city > .weather_info {
+    width: 46%;
+}
+
 .weather_info {
     display: flex;
     flex-direction: column;
-    width: 47%;
+/*    width: 47%; */
 
     padding: 1%;
     border: 1px solid #7E07A9;
@@ -93,6 +98,7 @@ h2 {
 
     background-color: #DFCBFF;
 }
+
 
 .weather_info > ul {
     display: flex;
@@ -104,7 +110,7 @@ h2 {
 .weather_info > ul > li {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
 
     padding: 1%;
 
@@ -115,6 +121,12 @@ h2 {
 
 .weather_info > ul > li > p:first-child {
     font-weight: bold;
+    margin-right: auto;
+}
+
+
+.weather_info > ul > li > p:last-child {
+    text-align: end;
 }
 
 
@@ -122,7 +134,7 @@ h2 {
     display: flex;
     flex-direction: column;
 
-    width: 47%;
+    width: 46%;
 }
 
 .favorite-city-main-info > div {
@@ -168,7 +180,7 @@ h3 {
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    width: 49%;
+    width: 48%;
 }
 
 .add-city > input {
@@ -200,13 +212,29 @@ h3 {
 
 /* Список городов */
 
+.weather-panel {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 4%;
+    grid-row-gap: 2%;
+}
+
 
 .weather_info > div {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
 
     font-size: 3vw;
+}
+
+.weather_info > div > p:nth-child(2),
+.weather_info > div > img {
+    margin-left: 5%;
+}
+
+.weather_info > div > button {
+    margin-left: auto;
 }
 
 .weather_info > div > p:first-child {

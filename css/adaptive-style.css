@@ -1,7 +1,6 @@
 @media screen and (max-width: 960px) {
 
     /* Шапка */
-
     header > h1 {
         font-size: 7vw;
         margin-right: auto;
@@ -22,18 +21,23 @@
     }
 
     /* Структура данных о погоде */
-
     .structure > li {
         flex-direction: column;
     }
 
-    .structure > li > div {
-        flex-direction: column;
+
+
+    .main-city > .weather_info,
+    .favorite-city-main-info{
         width: 100%;
     }
 
-    /* Избранный город */
+    .weather-panel {
+        grid-template-columns: 1fr;
+        grid-row-gap: 0.5%;
+    }
 
+    /* Избранный город */
     h2 {
         font-size: 7.5vw;
     }
@@ -52,7 +56,6 @@
     }
 
     /* Структура описания погоды */
-
     .weather_info {
         margin-top: 5%;
     }
@@ -62,7 +65,6 @@
     }
 
     /* Избранное */
-
     h3 {
         font-size: 7vw;
         margin-right: auto;
@@ -87,9 +89,26 @@
     }
 
     /* Список городов */
-
     .weather_info > div {
         font-size: 7vw;
     }
 
+}
+
+/* Увеличение колонок */
+
+@media screen and (min-width: 1920px) {
+
+    .weather-panel {
+        grid-template-columns: repeat(3, 1fr);
+        grid-column-gap: 2%;
+    }
+}
+
+@media screen and (min-width: 2440px) {
+
+    .weather-panel {
+        grid-template-columns: repeat(4, 1fr);
+        grid-column-gap: 2%;
+    }
 }
