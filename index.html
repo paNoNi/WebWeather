@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="css/adaptive-style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+
+    <script type="text/javascript" src="js/rt-weather.js"></script>
+    <script type="text/javascript" src="js/localStorage.js"></script>
+    <script type="text/javascript" src="js/cities-info.js"></script>
+    <script type="text/javascript" src="js/current-geo.js"></script>
+    <script type="text/javascript" src="js/update-info-page.js"></script>
 </head>
 <body>
 <header>
@@ -55,135 +61,13 @@
         <li class="favorite-panel">
             <h3>Избранное</h3>
             <label class="add-city">
-                <input type="text" placeholder="Добавить новый город">
-                <button><img src="source/icons-action/icons-plus.svg" alt="Добавить"></button>
+                <input id="input-city" type="text" placeholder="Добавить новый город">
+                <button onclick="addCity()"><img src="source/icons-action/icons-plus.svg" alt="Добавить"></button>
             </label>
 
         </li>
     </ul>
     <div class="weather-panel">
-        <div class="weather_info">
-            <div>
-                <p>Moscow</p>
-                <p>5°C</p>
-                <img src="source/icons-weather/icons-partly-cloudy-day.png" alt="Погода">
-                <button><img src="source/icons-action/icons-cancel.svg" alt="Удалить"></button>
-            </div>
-            <ul>
-                <li>
-                    <p>Ветер</p>
-                    <p>Moderate breeze, 6.0 m/s, North-northwest</p>
-                </li>
-                <li>
-                    <p>Облачность</p>
-                    <p>Broken clouds</p>
-                </li>
-                <li>
-                    <p>Давление</p>
-                    <p>1013 hpa</p>
-                </li>
-                <li>
-                    <p>Влажность</p>
-                    <p>52%</p>
-                </li>
-                <li>
-                    <p>Координаты</p>
-                    <p>[59.88, 30.42]</p>
-                </li>
-            </ul>
-        </div>
-        <div class="weather_info">
-            <div>
-                <p>Helsinki</p>
-                <p>3°C</p>
-                <img src="source/icons-weather/icons-partly-cloudy-day.png" alt="Погода">
-                <button><img src="source/icons-action/icons-cancel.svg" alt="Удалить"></button>
-            </div>
-            <ul>
-                <li>
-                    <p>Ветер</p>
-                    <p>Moderate breeze, 6.0 m/s, North-northwest</p>
-                </li>
-                <li>
-                    <p>Облачность</p>
-                    <p>Broken clouds</p>
-                </li>
-                <li>
-                    <p>Давление</p>
-                    <p>1013 hpa</p>
-                </li>
-                <li>
-                    <p>Влажность</p>
-                    <p>52%</p>
-                </li>
-                <li>
-                    <p>Координаты</p>
-                    <p>[59.88, 30.42]</p>
-                </li>
-            </ul>
-        </div>
-
-        <div class="weather_info">
-            <div>
-                <p>Moscow</p>
-                <p>5°C</p>
-                <img src="source/icons-weather/icons-partly-cloudy-day.png" alt="Погода">
-                <button><img src="source/icons-action/icons-cancel.svg" alt="Удалить"></button>
-            </div>
-            <ul>
-                <li>
-                    <p>Ветер</p>
-                    <p>Moderate breeze, 6.0 m/s, North-northwest</p>
-                </li>
-                <li>
-                    <p>Облачность</p>
-                    <p>Broken clouds</p>
-                </li>
-                <li>
-                    <p>Давление</p>
-                    <p>1013 hpa</p>
-                </li>
-                <li>
-                    <p>Влажность</p>
-                    <p>52%</p>
-                </li>
-                <li>
-                    <p>Координаты</p>
-                    <p>[59.88, 30.42]</p>
-                </li>
-            </ul>
-        </div>
-        <div class="weather_info">
-            <div>
-                <p>Helsinki</p>
-                <p>3°C</p>
-                <img src="source/icons-weather/icons-partly-cloudy-day.png" alt="Погода">
-                <button><img src="source/icons-action/icons-cancel.svg" alt="Удалить"></button>
-            </div>
-            <ul>
-                <li>
-                    <p>Ветер</p>
-                    <p>Moderate breeze, 6.0 m/s, North-northwest</p>
-                </li>
-                <li>
-                    <p>Облачность</p>
-                    <p>Broken clouds</p>
-                </li>
-                <li>
-                    <p>Давление</p>
-                    <p>1013 hpa</p>
-                </li>
-                <li>
-                    <p>Влажность</p>
-                    <p>52%</p>
-                </li>
-                <li>
-                    <p>Координаты</p>
-                    <p>[59.88, 30.42]</p>
-                </li>
-            </ul>
-        </div>
-
         <div class="weather_info">
             <div>
                 <p>Moscow</p>
