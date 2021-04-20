@@ -1,24 +1,45 @@
 let default_city = 'Moscow';
 const fav_city = "favorite"
 
-navigator.geolocation.getCurrentPosition(function (position) {
-    let requestUrlPrefix = `https://api.openweathermap.org/data/2.5/weather?units=metric&appid=${apiKey}&lat=${position.coords.latitude}&lon=${position.coords.longitude}`;
-    return getCurrentCity(requestUrlPrefix)
-}, function () {
-    let last_fav_city = localStorage.getItem(fav_city)
-    if (last_fav_city != null) {
-        default_city = last_fav_city
-    }
-    let requestUrlPrefix = `https://api.openweathermap.org/data/2.5/weather?units=metric&appid=${apiKey}&q=${default_city}`;
-    return getCurrentCity(requestUrlPrefix)
-})
-
 function getCurrentCity(request) {
     fetch(request)
         .then(response => response.json())
         .then(data => {
+            console.log(data)
             saveCity(fav_city, data.name)
-            return getDescription(data)
+            let city_info =getDescription(data)
+            setTimeout(update_cur_page, 1600, city_info)
         })
         .catch(err => alert(err));
+}
+
+if (navigator.geolocation) {
+    console.log('Geolocation is supported!');
+} else {
+    console.log('Geolocation is not supported for this Browser/OS version yet.');
+}
+
+window.onload = function () {
+    let startPos;
+    let geoSuccess = function (position) {
+        startPos = position;
+        let requestUrlPrefix = `https://api.openweathermap.org/data/2.5/weather?units=metric&appid=${apiKey}&lat=${position.coords.latitude}&lon=${position.coords.longitude}`;
+        getCurrentCity(requestUrlPrefix)
+        update_cur_page()
+    };
+    navigator.geolocation.getCurrentPosition(geoSuccess);
+};
+
+function update_cur_page(cityInfo) {
+    let weatherPanel = document.querySelector('.main-city')
+    weatherPanel.innerHTML = get_favorite_hat(cityInfo) + '\n\
+            <div class="weather_info">\n\
+                ' + get_weather_info(cityInfo) + '\n\
+            </div>'
+}
+
+function clear_panel() {
+    let weatherPanel = document.querySelector('.main-city')
+    weatherPanel.innerHTML = ''
+
 }

@@ -1,35 +1,28 @@
-let citiesInfo = new Map();
-
 function loadCitiesInfo() {
-    cities.forEach(function (city, i, cities) {
-        addCityToArray(city);
-    })
-}
-
-function addCityToArray(city) {
-    let requestUrlPrefix = `https://api.openweathermap.org/data/2.5/weather?units=metric&appid=${apiKey}&q=${city}`;
-    fetch(requestUrlPrefix)
-        .then(response => response.json())
-        .then(data => {
-            let cityInfo = getDescription(data)
-            citiesInfo.set(city, cityInfo);
+    let citiesInfo = []
+    let cities = loadCities(request_key)
+    if (cities !== null) {
+        cities.forEach(function (city, i, cities) {
+            citiesInfo.push(addCityToArray(city));
         })
-
-        .catch(err => alert(err));
+    }
+    return citiesInfo
 }
-
 
 function getDescription(data) {
-    let cityInfo = new Map();
-
-    cityInfo.set('name', data.name);
-    cityInfo.set('temp', data.main.temp);
-    cityInfo.set('wind_speed', data.wind.speed);
-    cityInfo.set('wind_dir', data.wind.deg);
-    cityInfo.set('clouds', data.weather.description);
-    cityInfo.set('pressure', data.main.pressure);
-    cityInfo.set('humidity', data.main.humidity);
-    cityInfo.set('coord', data.coord);
-
-    return cityInfo
+    return {
+        name: data.name,
+        temp: data.main.temp,
+        wind_speed: data.wind.speed,
+        wind_dir: data.wind.deg,
+        clouds: data.weather[0].description,
+        pressure: data.main.pressure,
+        humidity: data.main.humidity,
+        coord: data.coord,
+        icon: data.weather[0].icon,
+        dt: data.dt,
+        sunrise: data.sys.sunrise,
+        sunset: data.sys.sunset,
+        vis: 0
+    }
 }

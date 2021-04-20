@@ -1,9 +1,9 @@
 const request_key = 'cities';
-let cities = loadCities();
+const apiKey = "959ff036391e56de6e56139562a2cec7";
 
-function loadCities() {
+function loadCities(key) {
     try {
-        return JSON.parse(localStorage.getItem(request_key));
+        return JSON.parse(localStorage.getItem(key));
     } catch (err) {
         console.log(err)
     }
@@ -11,6 +11,10 @@ function loadCities() {
 }
 
 function saveCity(key, name) {
+    let cities = loadCities(request_key)
+    if (cities === null) {
+        cities = []
+    }
     if (cities.includes(name)) {
         return
     }
@@ -18,11 +22,45 @@ function saveCity(key, name) {
     localStorage.setItem(key, JSON.stringify(cities))
 }
 
-function deleteCity(name) {
-    if (!cities.includes(name)) {
+
+function addCityToArray(city) {
+    let requestUrlPrefix = `https://api.openweathermap.org/data/2.5/weather?units=metric&appid=${apiKey}&q=${city}`;
+    return fetch(requestUrlPrefix)
+        .then(response => response.json())
+        .then(data => {
+            return getDescription(data);
+        }).catch(err => console.log(err));
+}
+
+
+function deleteCity(city_info) {
+    let cities = loadCities(request_key)
+    if (!cities.includes(city_info.id)) {
         return
     }
-    let id_name = cities.indexOf(name)
-    if (~id_name) cities.slice(id_name, 1)
+    let id_name = cities.indexOf(city_info.id)
+    if (~id_name) cities.splice(id_name, 1)
     localStorage.setItem(request_key, JSON.stringify(cities))
+    clear_panel()
+    addWeatherInfoPlate()
+}
+
+function addCity() {
+    let city = document.getElementById('input-city').value;
+    let requestUrlPrefix = `https://api.openweathermap.org/data/2.5/weather?units=metric&appid=${apiKey}&q=${city}`;
+    fetch(requestUrlPrefix)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            let city_name = data.name
+            if (city_name === undefined) {
+                alert('Wrong city name')
+                return
+            }
+            saveCity(request_key, city_name)
+            clear_panel()
+            addWeatherInfoPlate()
+        })
+
+        .catch(err => alert(err))
 }
