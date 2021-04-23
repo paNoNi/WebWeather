@@ -5,9 +5,8 @@ function getCurrentCity(request) {
     fetch(request)
         .then(response => response.json())
         .then(data => {
-            console.log(data)
             saveCity(fav_city, data.name)
-            let city_info =getDescription(data)
+            let city_info = getDescription(data)
             setTimeout(update_cur_page, 1600, city_info)
         })
         .catch(err => alert(err));
@@ -20,6 +19,10 @@ if (navigator.geolocation) {
 }
 
 window.onload = function () {
+    get_current_pos()
+};
+
+function get_current_pos() {
     let startPos;
     let geoSuccess = function (position) {
         startPos = position;
@@ -28,7 +31,8 @@ window.onload = function () {
         update_cur_page()
     };
     navigator.geolocation.getCurrentPosition(geoSuccess);
-};
+
+}
 
 function update_cur_page(cityInfo) {
     let weatherPanel = document.querySelector('.main-city')

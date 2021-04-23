@@ -28,6 +28,7 @@ function addCityToArray(city) {
     return fetch(requestUrlPrefix)
         .then(response => response.json())
         .then(data => {
+            console.log(data)
             return getDescription(data);
         }).catch(err => console.log(err));
 }
@@ -35,10 +36,10 @@ function addCityToArray(city) {
 
 function deleteCity(city_info) {
     let cities = loadCities(request_key)
-    if (!cities.includes(city_info.id)) {
-        return
+    if (!cities.includes(city_info)) {
+        return;
     }
-    let id_name = cities.indexOf(city_info.id)
+    let id_name = cities.indexOf(city_info)
     if (~id_name) cities.splice(id_name, 1)
     localStorage.setItem(request_key, JSON.stringify(cities))
     clear_panel()

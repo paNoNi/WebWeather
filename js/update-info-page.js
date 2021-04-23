@@ -3,21 +3,22 @@ function addWeatherInfoPlate() {
     Promise.all(citiesInfo).then(r =>
         citiesInfo.forEach(function (cityInfo) {
                 cityInfo.then(cityValues => {
-                    loading(cityValues.name)
-                    setTimeout(update_page, 1500, cityValues);
+                    let name = cityValues.name;
+                    let id_name = name.replaceAll(' ', '-');
+                    loading(id_name);
+                    setTimeout(update_page, 1500, cityValues, id_name);
                 })
             }
         ))
 }
 
-function update_page(cityInfo) {
+function update_page(cityInfo, id_name) {
     let weatherPanel = document.querySelector('.weather-panel')
-    let city_name = fix_name(cityInfo['name'])
-    let weatherInfo = '<div id=' + city_name + ' class="weather_info">\n\
-                        ' + get_plate_hat(cityInfo) + '\n\
+    let weatherInfo = '<div id=' + id_name + ' class="weather_info">\n\
+                        ' + get_plate_hat(cityInfo, id_name) + '\n\
                         ' + get_weather_info(cityInfo) + '\n\
                         </div>'
-    remove_load(city_name)
+    remove_load(id_name)
     weatherPanel.innerHTML += weatherInfo
 }
 
@@ -39,10 +40,9 @@ function clear_panel() {
 
 }
 
-function loading(city_name) {
-     let weatherPanel = document.querySelector('.weather-panel')
-    let short_name = fix_name(city_name)
-    let weatherInfo = temp_loading(short_name)
+function loading(name) {
+    let weatherPanel = document.querySelector('.weather-panel')
+    let weatherInfo = temp_loading(name)
     weatherPanel.innerHTML += weatherInfo
 }
 
@@ -67,8 +67,8 @@ function temp_loading(city_name) {
 
 function remove_load(city_name) {
     let ball = document.querySelector('#' + city_name)
-    console.log(ball)
     ball.remove()
 }
 
 addWeatherInfoPlate()
+setInterval(addWeatherInfoPlate, 10 * 60 * 1000)

@@ -6,20 +6,20 @@
     <title>Weather</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/adaptive-style.css">
+    <link rel="stylesheet" href="css/loading.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
 
-    <script type="text/javascript" src="js/rt-weather.js"></script>
+    <script type="text/javascript" src="js/current-geo.js"></script>
     <script type="text/javascript" src="js/localStorage.js"></script>
     <script type="text/javascript" src="js/cities-info.js"></script>
-    <script type="text/javascript" src="js/current-geo.js"></script>
     <script type="text/javascript" src="js/update-info-page.js"></script>
     <script type="text/javascript" src="js/templates.js"></script>
 </head>
 <body>
 <header>
     <h1>Погода здесь</h1>
-    <button>
+    <button onclick="get_current_pos()">
         <p>Обновить геолокацию</p>
         <img src="source/icons-action/icons-refresh.svg" alt="Обновить">
     </button>
