@@ -12,7 +12,7 @@ function addCityTile(city) {
 
     let ps = header.querySelectorAll('p');
     // Название города
-    ps[0].textContent = fix_name(city.name);
+    ps[0].textContent = fixName(city.name);
 
     setFields(header, descriptionTemplate, city);
 
@@ -35,7 +35,7 @@ function addMainCity(city) {
 
     let nameCity = header.querySelector('h2');
     // Название города
-    nameCity.textContent = fix_name(city.name, true);
+    nameCity.textContent = fixName(city.name, true);
 
     setFields(header, descriptionTemplate, city);
 
@@ -63,7 +63,7 @@ function setFields(header, descriptionTemplate, city) {
     ps = body.querySelectorAll('p')
     // Ветер
     let wind = ps[1];
-    wind.textContent = get_direction_wind(parseInt(city.wind_dir)) + ' ' + city.wind_speed + 'm/s';
+    wind.textContent = getDirectionWind(parseInt(city.wind_dir)) + ' ' + city.wind_speed + 'm/s';
 
     // Облачность
     let cloudy = ps[3];
@@ -117,7 +117,7 @@ function resetFavCity() {
 }
 
 
-function fix_name(name, is_fav = false) {
+function fixName(name, is_fav = false) {
     let max_len = 8
     if (is_fav) {
         max_len = 16
@@ -129,7 +129,7 @@ function fix_name(name, is_fav = false) {
     return name
 }
 
-function get_direction_wind(deg) {
+function getDirectionWind(deg) {
     if ((deg >= 0 && deg < 22.5) || (deg >= 337.5 && deg <= 360)) {
         return 'North';
     } else if (deg >= 22.5 && deg < 67.5) {

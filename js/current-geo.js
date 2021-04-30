@@ -15,10 +15,10 @@ if (navigator.geolocation) {
 }
 
 window.onload = function () {
-    get_current_pos()
+    getCurrentPos()
 };
 
-function get_current_pos() {
+function getCurrentPos() {
 
     let geoSuccess = function (position) {
         getCurrentCity(getURLCoords(position.coords.latitude, position.coords.longitude))
