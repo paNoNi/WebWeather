@@ -1,49 +1,131 @@
-function get_weather_info(city_info) {
-    return '<ul>\n\
-            <li>\n\
-                <p>Ветер</p>\n\
-                <p>' + get_direction_wind(parseInt(city_info.wind_dir)) + ' ' + city_info.wind_speed + 'm/s</p>\n\
-            </li>\n\
-            <li>\n\
-                <p>Облачность</p>\n\
-                <p>' + city_info.clouds + '</p>\n\
-            </li>\n\
-            <li>\n\
-                <p>Давление</p>\n\
-                <p>' + city_info.pressure + ' hpa</p>\n\
-            </li>\n\
-            <li>\n\
-                <p>Влажность</p>\n\
-                <p>' + city_info.humidity + '%</p>\n\
-            </li>\n\
-            <li>\n\
-                <p>Координаты</p>\n\
-                <p>' + Math.round(city_info.coord.lat) + ':' + Math.round(city_info.coord.lon) + '</p>\n\
-            </li>\n\
-        </ul>'
+function addCityTile(city) {
+    let mainContainer = document.querySelector('div.weather-panel');
+    let hatTemplate = document.querySelector('#template_city_info');
+    let descriptionTemplate = document.querySelector('#template_description');
+
+    // Изменим параметры шапки инфоячейки
+    let header = hatTemplate.content.querySelector('div');
+
+    let btn = hatTemplate.content.querySelector('button');
+
+    let ps = header.querySelectorAll('p');
+    // Название города
+    ps[0].textContent = fix_name(city.name);
+
+    setFields(header, descriptionTemplate, city);
+
+    let newContainer = document.createElement('div');
+    newContainer.className = 'weather_info';
+
+    newContainer.append(hatTemplate.content.cloneNode(true));
+    newContainer.append(descriptionTemplate.content.cloneNode(true));
+    mainContainer.append(newContainer);
+
 }
 
-function get_favorite_hat(city_info) {
-    let city_name = fix_name(city_info['name'], true)
-    return '<div class="favorite-city-main-info">\n\
-                <h2>' + city_name + '</h2>\n\
-                <div>\n\
-                    <img src="http://openweathermap.org/img/wn/' + city_info.icon + '@2x.png" alt="Иконка погоды">\n\
-                    <p>' + Math.round(city_info.temp) + '°C</p>\n\
-                </div>\n\
-            </div>'
+function addMainCity(city) {
+    let mainContainer = document.querySelector('.main-city');
+    let hatTemplate = document.querySelector('#template_fav_city_info');
+    let descriptionTemplate = document.querySelector('#template_description');
+
+    // Изменим параметры шапки инфоячейки
+    let header = hatTemplate.content.querySelector('div');
+
+    let nameCity = header.querySelector('h2');
+    // Название города
+    nameCity.textContent = fix_name(city.name, true);
+
+    setFields(header, descriptionTemplate, city);
+
+    let div_description = document.createElement('div');
+    div_description.className = 'weather_info';
+    div_description.append(descriptionTemplate.content.cloneNode(true));
+    mainContainer.append(hatTemplate.content.cloneNode(true));
+    mainContainer.append(div_description);
+
 }
 
-function get_plate_hat(city_info) {
-    let city_name = fix_name(city_info.name)
-    return '<div>\n\
-                <span><p> ' + city_name + ' </p></span>\n\
-                <p>' + Math.round(city_info.temp) + '°C</p>\n\
-                <img src="http://openweathermap.org/img/wn/' + city_info.icon + '@4x.png" alt="Погода">\n\
-                <button onclick="deleteCity(\'' + city_info.name + '\')"><img src="source/icons-action/icons-cancel.svg" alt="Удалить"></button>\n\
-            </div>'
+function setFields(header, descriptionTemplate, city) {
+
+    // Температура
+    let temp = header.querySelectorAll('p');
+    temp.textContent = Math.round(city.temp) + '°C';
+
+    // Иконка погоды
+    let icon = header.querySelector('img');
+    icon.src = 'https://openweathermap.org/img/wn/' + city.icon + '@2x.png';
+
+    // Изменим параметры тела инфоячейки
+    let body = descriptionTemplate.content.querySelector('ul')
+
+    ps = body.querySelectorAll('p')
+    // Ветер
+    let wind = ps[1];
+    wind.textContent = get_direction_wind(parseInt(city.wind_dir)) + ' ' + city.wind_speed + 'm/s';
+
+    // Облачность
+    let cloudy = ps[3];
+    cloudy.textContent = city.clouds;
+
+    // Давление
+    let pressure = ps[5];
+    pressure.textContent = city.pressure + 'hpa';
+
+    // Влажность
+    let humanity = ps[7];
+    humanity.textContent = city.humidity + '%';
+
+    // Координаты
+    let coords = ps[9];
+    coords.textContent = Math.round(city.coord.lat) + ':' + Math.round(city.coord.lon);
+
 }
 
+function setLoading(nameCity, istop = false) {
+    let cont;
+    if (istop) {
+        cont = document.querySelector('li.main-city');
+
+    } else {
+        cont = document.querySelector('div.weather-panel');
+    }
+    let template = document.querySelector('#template-loading')
+
+    let loading = document.createElement('div')
+    loading.className = 'windows8 ' + nameCity
+    loading.append(template.content.cloneNode(true))
+    cont.append(loading)
+}
+
+function removeFragment(nameCity) {
+    let loading = document.querySelector('.' + nameCity)
+    loading.remove()
+}
+
+function resetFavCity() {
+    let fcmi = document.querySelector('.favorite-city-main-info');
+    let wi = document.querySelector('.weather_info');
+
+    if (fcmi === null || wi === null) {
+        return
+    }
+
+    fcmi.remove();
+    wi.remove()
+}
+
+
+function fix_name(name, is_fav = false) {
+    let max_len = 8
+    if (is_fav) {
+        max_len = 16
+    }
+    if (name.length > max_len) {
+        let matches = name.match(/\b(\w)/g);
+        return matches.join('')
+    }
+    return name
+}
 
 function get_direction_wind(deg) {
     if ((deg >= 0 && deg < 22.5) || (deg >= 337.5 && deg <= 360)) {

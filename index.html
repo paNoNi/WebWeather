@@ -10,11 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
 
-    <script type="text/javascript" src="js/current-geo.js"></script>
-    <script type="text/javascript" src="js/localStorage.js"></script>
-    <script type="text/javascript" src="js/cities-info.js"></script>
-    <script type="text/javascript" src="js/update-info-page.js"></script>
-    <script type="text/javascript" src="js/templates.js"></script>
+
 </head>
 <body>
 <header>
@@ -27,23 +23,7 @@
 <main>
     <ul class="structure">
         <li class="main-city">
-            <div class="windows8">
-                <div class="wBall1">
-                    <div class="wInnerBall"></div>
-                </div>
-                <div class="wBall2">
-                    <div class="wInnerBall"></div>
-                </div>
-                <div class="wBall3">
-                    <div class="wInnerBall"></div>
-                </div>
-                <div class="wBall4">
-                    <div class="wInnerBall"></div>
-                </div>
-                <div class="wBall5">
-                    <div class="wInnerBall"></div>
-                </div>
-            </div>
+
         </li>
         <li class="favorite-panel">
             <h3>Избранное</h3>
@@ -57,6 +37,78 @@
     <div class="weather-panel">
 
     </div>
+
+    <template id="template_fav_city_info">
+        <div class="favorite-city-main-info">
+            <h2></h2>
+            <div>
+                <img src="http://openweathermap.org/img/wn/' + city_info.icon + '@2x.png" alt="Иконка погоды">
+                <p></p>
+            </div>
+        </div>
+    </template>
+
+    <template id="template_city_info">
+        <div>
+            <span><p></p></span>
+            <p></p>
+            <img alt="Погода">
+            <button onclick=""><img
+                    src="source/icons-action/icons-cancel.svg"
+                    alt="Удалить"></button>
+        </div>
+
+    </template>
+
+    <template id="template_description">
+        <ul>
+            <li>
+                <p>Ветер</p>
+                <p></p>
+            </li>
+            <li>
+                <p>Облачность</p>
+                <p></p>
+            </li>
+            <li>
+                <p>Давление</p>
+                <p></p>
+            </li>
+            <li>
+                <p>Влажность</p>
+                <p></p>
+            </li>
+            <li>
+                <p>Координаты</p>
+                <p></p>
+            </li>
+        </ul>
+    </template>
+
+    <template id="template-loading">
+        <div class="wBall1">
+            <div class="wInnerBall"></div>
+        </div>
+        <div class="wBall2">
+            <div class="wInnerBall"></div>
+        </div>
+        <div class="wBall3">
+            <div class="wInnerBall"></div>
+        </div>
+        <div class="wBall4">
+            <div class="wInnerBall"></div>
+        </div>
+        <div class="wBall5">
+            <div class="wInnerBall"></div>
+        </div>
+    </template>
+
 </main>
+<script type="text/javascript" src="js/openweather.js"></script>
+<script type="text/javascript" src="js/current-geo.js"></script>
+<script type="text/javascript" src="js/localStorage.js"></script>
+<script type="text/javascript" src="js/cities-info.js"></script>
+<script type="text/javascript" src="js/update-info-page.js"></script>
+<script type="text/javascript" src="js/templates.js"></script>
 </body>
 </html>

@@ -3,7 +3,7 @@ function loadCitiesInfo() {
     let cities = loadCities(request_key)
     if (cities !== null) {
         cities.forEach(function (city, i, cities) {
-            citiesInfo.push(addCityToArray(city));
+            citiesInfo.push(owRequest(getURLCity(city)));
         })
     }
     return citiesInfo

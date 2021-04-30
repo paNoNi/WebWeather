@@ -1,15 +1,11 @@
-let default_city = 'Moscow';
-const fav_city = "favorite"
-
 function getCurrentCity(request) {
-    fetch(request)
-        .then(response => response.json())
-        .then(data => {
-            saveCity(fav_city, data.name)
-            let city_info = getDescription(data)
-            setTimeout(update_cur_page, 1600, city_info)
-        })
-        .catch(err => alert(err));
+    resetFavCity();
+    owRequest(request).then((data) => {
+        saveCity(fav_city, data.name)
+        addCityToPage(data, addMainCity, true)
+
+    }).catch(err => alert(err));
+
 }
 
 if (navigator.geolocation) {
@@ -23,27 +19,15 @@ window.onload = function () {
 };
 
 function get_current_pos() {
-    let startPos;
+
     let geoSuccess = function (position) {
-        startPos = position;
-        let requestUrlPrefix = `https://api.openweathermap.org/data/2.5/weather?units=metric&appid=${apiKey}&lat=${position.coords.latitude}&lon=${position.coords.longitude}`;
-        getCurrentCity(requestUrlPrefix)
-        update_cur_page()
+        getCurrentCity(getURLCoords(position.coords.latitude, position.coords.longitude))
     };
-    navigator.geolocation.getCurrentPosition(geoSuccess);
 
-}
+    let setDefault = function () {
+        getCurrentCity(getURLCity(default_city))
+    }
 
-function update_cur_page(cityInfo) {
-    let weatherPanel = document.querySelector('.main-city')
-    weatherPanel.innerHTML = get_favorite_hat(cityInfo) + '\n\
-            <div class="weather_info">\n\
-                ' + get_weather_info(cityInfo) + '\n\
-            </div>'
-}
-
-function clear_panel() {
-    let weatherPanel = document.querySelector('.main-city')
-    weatherPanel.innerHTML = ''
+    navigator.geolocation.getCurrentPosition(geoSuccess, setDefault);
 
 }
