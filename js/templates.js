@@ -51,7 +51,12 @@ function setFields(header, descriptionTemplate, city) {
 
     // Температура
     let temp = header.querySelectorAll('p');
-    temp.textContent = Math.round(city.temp) + '°C';
+
+    if (temp.length === 1) {
+        temp[0].textContent = Math.round(city.temp) + '°C';
+    } else {
+        temp[1].textContent = Math.round(city.temp) + '°C';
+    }
 
     // Иконка погоды
     let icon = header.querySelector('img');
