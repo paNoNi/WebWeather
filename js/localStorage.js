@@ -50,7 +50,6 @@ function addCity() {
     let city = document.getElementById('input-city').value;
 
     owRequest(getURLCity(city)).then((data) => {
-        console.log(data)
         let city_name = data.name
         if (city_name === undefined) {
             alert('Wrong city name')
