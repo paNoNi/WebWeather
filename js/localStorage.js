@@ -33,13 +33,15 @@ addEventListener('keydown', function (e) {
 
 
 function deleteCity(city_info) {
-    console.log(city_info)
+    let nameCity = city_info.className;
+    let fullName = nameCity.replaceAll('_', ' ');
+
     let cities = loadCities(request_key)
-    if (!cities.includes(city_info)) {
+    if (!cities.includes(fullName)) {
         return;
     }
-    removeFragment(city_info.name)
-    let id_name = cities.indexOf(city_info)
+    removeFragment('#' + nameCity)
+    let id_name = cities.indexOf(fullName)
     if (~id_name) cities.splice(id_name, 1)
     localStorage.setItem(request_key, JSON.stringify(cities))
 }

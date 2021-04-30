@@ -1,4 +1,5 @@
 function addCityTile(city) {
+
     let mainContainer = document.querySelector('div.weather-panel');
     let hatTemplate = document.querySelector('#template_city_info');
     let descriptionTemplate = document.querySelector('#template_description');
@@ -6,7 +7,8 @@ function addCityTile(city) {
     // Изменим параметры шапки инфоячейки
     let header = hatTemplate.content.querySelector('div');
 
-    let btn = hatTemplate.content.querySelector('button');
+    let btn = header.querySelector('button');
+    btn.className = city.name.replaceAll(' ', '_');
 
     let ps = header.querySelectorAll('p');
     // Название города
@@ -16,7 +18,7 @@ function addCityTile(city) {
 
     let newContainer = document.createElement('div');
     newContainer.className = 'weather_info';
-
+    newContainer.id = city.name.replaceAll(' ', '_');
     newContainer.append(hatTemplate.content.cloneNode(true));
     newContainer.append(descriptionTemplate.content.cloneNode(true));
     mainContainer.append(newContainer);
@@ -97,9 +99,9 @@ function setLoading(nameCity, istop = false) {
     cont.append(loading)
 }
 
-function removeFragment(nameCity) {
-    let loading = document.querySelector('.' + nameCity)
-    loading.remove()
+function removeFragment(selector) {
+    let loading = document.querySelector(selector);
+    loading.remove();
 }
 
 function resetFavCity() {

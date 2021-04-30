@@ -12,7 +12,7 @@ function addCityToPage(data, addFunc, istop) {
     setLoading(cityName, istop);
     sleep(2000).then(r => {
         addFunc(data);
-        removeFragment(cityName);
+        removeFragment('.' + cityName);
     });
 }
 
