@@ -16,6 +16,7 @@ function addCityToPage(data, addFunc, istop) {
     });
 }
 
+
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }

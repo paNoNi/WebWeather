@@ -25,6 +25,12 @@ function saveCity(key, name) {
     localStorage.setItem(key, JSON.stringify(cities))
 }
 
+addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+        addCity()
+    }
+})
+
 
 function deleteCity(city_info) {
     console.log(city_info)
@@ -50,5 +56,9 @@ function addCity() {
         }
         saveCity(request_key, city_name)
         addCityToPage(data, addCityTile)
+
+        let inputCity = document.querySelector('#input-city');
+        inputCity.value = '';
+
     }).catch(err => alert(err))
 }
