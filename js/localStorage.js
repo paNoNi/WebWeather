@@ -1,5 +1,8 @@
 function loadCities(key) {
     try {
+        if (key === fav_city) {
+            return localStorage.getItem(key);
+        }
         return JSON.parse(localStorage.getItem(key));
     } catch (err) {
         console.log(err)
