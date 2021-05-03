@@ -22,4 +22,3 @@ function sleep(ms) {
 }
 
 addWeatherInfoPlate()
-setInterval(addWeatherInfoPlate, 1000 * 60 * 10)

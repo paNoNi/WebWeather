@@ -12,7 +12,7 @@ function loadCities(key) {
 
 function saveCity(key, name) {
     let cities = loadCities(key)
-    if (key === fav_city ) {
+    if (key === fav_city) {
         cities = name
         localStorage.setItem(key, cities)
         return;
@@ -51,6 +51,14 @@ function deleteCity(city_info) {
 
 function addCity() {
     let city = document.getElementById('input-city').value;
+    let cities = loadCities(request_key);
+
+    let inputCity = document.querySelector('#input-city');
+    inputCity.value = '';
+
+    if (cities.includes(city)) {
+        return;
+    }
 
     owRequest(getURLCity(city)).then((data) => {
         let city_name = data.name
@@ -58,11 +66,12 @@ function addCity() {
             alert('Wrong city name')
             return
         }
+        if (cities.includes(city_name)) {
+            return;
+        }
         saveCity(request_key, city_name)
         addCityToPage(data, addCityTile)
 
-        let inputCity = document.querySelector('#input-city');
-        inputCity.value = '';
 
     }).catch(err => alert(err))
 }
