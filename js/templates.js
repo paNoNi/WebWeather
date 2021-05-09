@@ -1,4 +1,4 @@
-function addCityTile(city) {
+function addCityTitle(city) {
 
     let mainContainer = document.querySelector('div.weather-panel');
     let hatTemplate = document.querySelector('#template_city_info');
@@ -84,7 +84,7 @@ function setFields(header, descriptionTemplate, city) {
 
     // Координаты
     let coords = ps[9];
-    coords.textContent = Math.round(city.coord.lat) + ':' + Math.round(city.coord.lon);
+    coords.textContent = Math.round(city.lat) + ':' + Math.round(city.lon);
 
 }
 

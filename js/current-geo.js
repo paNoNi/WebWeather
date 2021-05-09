@@ -1,8 +1,7 @@
-function getCurrentCity(request) {
+function getCurrentCity(data) {
     resetFavCity();
-    owRequest(request).then((data) => {
-        saveCity(fav_city, data.name)
-        addCityToPage(data, addMainCity, true)
+    data.then((curCity) => {
+        addCityToPage(curCity, addMainCity, true)
 
     }).catch(err => alert(err));
 
@@ -21,11 +20,11 @@ window.onload = function () {
 function getCurrentPos() {
 
     let geoSuccess = function (position) {
-        getCurrentCity(getURLCoords(position.coords.latitude, position.coords.longitude))
+        getCurrentCity(requestCityInfoByLocation(position.coords.latitude, position.coords.longitude));
     };
 
     let setDefault = function () {
-        getCurrentCity(getURLCity(default_city))
+        getCurrentCity(requestCityInfoByName(default_city))
     }
 
     navigator.geolocation.getCurrentPosition(geoSuccess, setDefault);

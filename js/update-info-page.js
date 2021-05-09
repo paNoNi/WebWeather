@@ -1,10 +1,12 @@
 function addWeatherInfoPlate() {
-    let citiesInfo = loadCitiesInfo()
-    for (let i = 0; i < citiesInfo.length; i++) {
-        citiesInfo[i].then((data) => {
-            addCityToPage(data, addCityTile)
-        })
-    }
+    let citiesInfo = loadCitiesInfo();
+    citiesInfo.then((data) => {
+        for (let i = 0; i < data.length; i++) {
+            requestCityInfoByName(data[i]).then((cityInfo) => {
+                addCityToPage(cityInfo, addCityTitle);
+            });
+        }
+    });
 }
 
 function addCityToPage(data, addFunc, istop) {
@@ -15,6 +17,13 @@ function addCityToPage(data, addFunc, istop) {
         removeFragment('.' + cityName);
     });
 }
+
+
+addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+        addCity()
+    }
+})
 
 
 function sleep(ms) {

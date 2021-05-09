@@ -1,12 +1,5 @@
-function loadCitiesInfo() {
-    let citiesInfo = []
-    let cities = loadCities(request_key)
-    if (cities !== null) {
-        cities.forEach(function (city, i, cities) {
-            citiesInfo.push(owRequest(getURLCity(city)));
-        })
-    }
-    return citiesInfo
+async function loadCitiesInfo() {
+    return await loadCities();
 }
 
 function getDescription(data) {
@@ -18,7 +11,8 @@ function getDescription(data) {
         clouds: data.weather[0].description,
         pressure: data.main.pressure,
         humidity: data.main.humidity,
-        coord: data.coord,
+        lat: data.lat,
+        lon: data.lon,
         icon: data.weather[0].icon,
         dt: data.dt,
         sunrise: data.sys.sunrise,
