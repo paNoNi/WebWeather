@@ -40,7 +40,7 @@ function addCity() {
 
     addFavouriteCity(city).then((response) => {
         if (response === false) {
-            console.log('City already exists');
+            alert('City already exists');
             return;
         }
         addCityToPage(response, addCityTitle)
